@@ -9,4 +9,5 @@ import java.util.List;
 public interface CityRepository extends JpaRepository<City, String> {
 
     List<City> findByName(String name);
+    List<City> findByCountry(String country);
 }

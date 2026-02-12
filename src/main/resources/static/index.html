@@ -21,9 +21,11 @@
     <input type="text" id="inputOneTextField" />
 </div>
 
-<div id="cityNameLinkDiv" style="display:none;">
-    <a id="cityNameLink" href="" target="_blank">Click to search</a>
+<!-- changed it to one dynmaic link since i realized its redundent to have 3 -->
+<div id="searchLinkDiv" style="display:none;">
+    <a id="searchLink" href="" target="_blank">Click to search</a>
 </div>
+
 
 <!-- population sub-buttons, only show when Population is clicked -->
 <div id="populationDiv" style="display:none;">
@@ -61,13 +63,14 @@
         if (option == "cityName") {
             document.getElementById("inputOneLabel").innerText = "Type the city name";
             document.getElementById("inputOneDiv").style.display = "block";
-            document.getElementById("cityNameLinkDiv").style.display = "none";
+            document.getElementById("searchLinkDiv").style.display = "none";
+
             document.getElementById("inputOneTextField").oninput = function() {
                 var name = document.getElementById("inputOneTextField").value;
                 var url = "http://localhost:8080/cities/search/findByName?name=" + name;
-                document.getElementById("cityNameLink").href = url;
-                document.getElementById("cityNameLink").innerText = url;
-                document.getElementById("cityNameLinkDiv").style.display = "block";
+                document.getElementById("searchLink").href = url;
+                document.getElementById("searchLink").innerText = url;
+                document.getElementById("searchLinkDiv").style.display = "block";
             };
 
         }
@@ -75,12 +78,20 @@
         if (option == "country") {
             document.getElementById("inputOneLabel").innerText = "Type the country";
             document.getElementById("inputOneDiv").style.display = "block";
-            document.getElementById("cityNameLinkDiv").style.display = "none";
+            document.getElementById("searchLinkDiv").style.display = "none";
+
+            document.getElementById("inputOneTextField").oninput = function() {
+                var country = document.getElementById("inputOneTextField").value;
+                var url = "http://localhost:8080/cities/search/findByCountry?country=" + country;
+                document.getElementById("searchLink").href = url;
+                document.getElementById("searchLink").innerText = url;
+                document.getElementById("searchLinkDiv").style.display = "block";
+            };
         }
 
         if (option == "population") {
             document.getElementById("populationDiv").style.display = "block";
-            document.getElementById("cityNameLinkDiv").style.display = "none";
+
         }
     }
 
