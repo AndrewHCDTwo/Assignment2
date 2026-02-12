@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Assignment City Searcher</title>
+</head>
+<body>
+
+<h1>Assignment City Searcher</h1>
+
+<h3>OPTIONS</h3>
+
+<button onclick="selectMain('cityName')">City Name</button>
+<button onclick="selectMain('country')">Country</button>
+<button onclick="selectMain('population')">Population</button>
+
+<br><br>
+
+<!-- input box for City Name and Country searches -->
+<div id="inputOneDiv" style="display:none;">
+    <label id="inputOneLabel">Label</label><br>
+    <input type="text" id="inputOneTextField" />
+</div>
+
+<!-- population sub-buttons, only show when Population is clicked -->
+<div id="populationDiv" style="display:none;">
+    <button onclick="selectPop('moreThan')">More Than</button>
+    <button onclick="selectPop('lessThan')">Less Than</button>
+    <button onclick="selectPop('inBetween')">In Between</button>
+
+    <br><br>
+
+    <!-- second input box, only for In Between -->
+    <div id="inputTwoDiv" style="display:none;">
+        <label id="inputTwoLabel">Input the high number</label><br>
+        <input type="number" id="inputTwoTextField" />
+    </div>
+</div>
+
+<!--at the bottom is a button so the user can see the cities json file in case they dont know (only meant for delveopment) -->
+<br><br>
+<p>Go to cities.json <a href="/cities.json">/cities.json</a></p>
+
+<script>
+    var currentMain = "";
+    var currentPop = "";
+
+    function selectMain(option) {
+        currentMain = option;
+        currentPop = "";
+
+        // hide all elements by default and only the buttons
+        document.getElementById("inputOneDiv").style.display = "none";
+        document.getElementById("populationDiv").style.display = "none";
+        document.getElementById("inputTwoDiv").style.display = "none";
+
+        if (option == "cityName") {
+            document.getElementById("inputOneLabel").innerText = "Type the city name";
+            document.getElementById("inputOneDiv").style.display = "block";
+        }
+
+        if (option == "country") {
+            document.getElementById("inputOneLabel").innerText = "Type the country";
+            document.getElementById("inputOneDiv").style.display = "block";
+        }
+
+        if (option == "population") {
+            document.getElementById("populationDiv").style.display = "block";
+        }
+    }
+
+    //select population button
+    function selectPop(option) {
+        currentPop = option;
+
+        // hide second box by default becasue inbetween requires two input fields
+        document.getElementById("inputTwoDiv").style.display = "none";
+
+        if (option == "moreThan") {
+            document.getElementById("inputOneLabel").innerText = "Type a number you want to check";
+            document.getElementById("inputOneDiv").style.display = "block";
+        }
+
+        if (option == "lessThan") {
+            document.getElementById("inputOneLabel").innerText = "Type a number you want to check";
+            document.getElementById("inputOneDiv").style.display = "block";
+        }
+
+        if (option == "inBetween") {
+            document.getElementById("inputOneLabel").innerText = "Input the low number";
+            document.getElementById("inputOneDiv").style.display = "block";
+            document.getElementById("inputTwoDiv").style.display = "block";
+        }
+    }
+</script>
+
+</body>
+</html>
