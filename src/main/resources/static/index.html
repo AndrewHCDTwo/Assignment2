@@ -1,3 +1,8 @@
+<!--Andrew Do-->
+<!--Programming Assignment 2-->
+<!--Prog27545 Web Application Design and Implementation -->
+<!--Last edited 2026-02-12-->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +14,7 @@
 
 <h3>OPTIONS</h3>
 
+<!-- the main serach buttons that allow the user to pick between seraching between 3 options -->
 <button onclick="selectMain('cityName')">City Name</button>
 <button onclick="selectMain('country')">Country</button>
 <button onclick="selectMain('population')">Population</button>
@@ -50,6 +56,7 @@
     var currentMain = "";
     var currentPop = "";
 
+    // Used to track the current button clicked since we do not want them to click all there as well what option for the population button they clicked
     function selectMain(option) {
         currentMain = option;
         currentPop = "";
@@ -74,7 +81,7 @@
             };
 
         }
-
+        // creates a url based on what the user inputs for country this time
         if (option == "country") {
             document.getElementById("inputOneLabel").innerText = "Type the country";
             document.getElementById("inputOneDiv").style.display = "block";
@@ -88,20 +95,21 @@
                 document.getElementById("searchLinkDiv").style.display = "block";
             };
         }
-
+ // population search since there are 3 alternative buttons afterr to show the sub options
         if (option == "population") {
             document.getElementById("populationDiv").style.display = "block";
 
         }
     }
 
-    //select population button
+    //select population button handler for that
     function selectPop(option) {
         currentPop = option;
 
         // hide second box by default becasue inbetween requires two input fields
         document.getElementById("inputTwoDiv").style.display = "none";
 
+        // find options more than the user input/ larger than
         if (option == "moreThan") {
             document.getElementById("inputOneLabel").innerText = "Type a number you want to check";
             document.getElementById("inputOneDiv").style.display = "block";
@@ -116,6 +124,7 @@
             };
         }
 
+        // finds options that are less than the user input
         if (option == "lessThan") {
             document.getElementById("inputOneLabel").innerText = "Type a number you want to check";
             document.getElementById("inputOneDiv").style.display = "block";
@@ -130,6 +139,7 @@
             };
         }
 
+        //finds options between two values
         if (option == "inBetween") {
             document.getElementById("inputOneLabel").innerText = "Input the low number";
             document.getElementById("inputOneDiv").style.display = "block";
