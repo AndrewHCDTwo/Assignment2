@@ -10,4 +10,7 @@ public interface CityRepository extends JpaRepository<City, String> {
 
     List<City> findByName(String name);
     List<City> findByCountry(String country);
+    List<City> findByPopulationGreaterThan(long population);
+    List<City> findByPopulationLessThan(long population);
+    List<City> findByPopulationBetween(long low, long high);
 }

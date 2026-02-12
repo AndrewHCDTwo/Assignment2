@@ -105,17 +105,47 @@
         if (option == "moreThan") {
             document.getElementById("inputOneLabel").innerText = "Type a number you want to check";
             document.getElementById("inputOneDiv").style.display = "block";
+            document.getElementById("searchLinkDiv").style.display = "none";
+
+            document.getElementById("inputOneTextField").oninput = function() {
+                var pop = document.getElementById("inputOneTextField").value;
+                var url = "http://localhost:8080/cities/search/findByPopulationGreaterThan?population=" + pop;
+                document.getElementById("searchLink").href = url;
+                document.getElementById("searchLink").innerText = url;
+                document.getElementById("searchLinkDiv").style.display = "block";
+            };
         }
 
         if (option == "lessThan") {
             document.getElementById("inputOneLabel").innerText = "Type a number you want to check";
             document.getElementById("inputOneDiv").style.display = "block";
+            document.getElementById("searchLinkDiv").style.display = "none";
+
+            document.getElementById("inputOneTextField").oninput = function() {
+                var pop = document.getElementById("inputOneTextField").value;
+                var url = "http://localhost:8080/cities/search/findByPopulationLessThan?population=" + pop;
+                document.getElementById("searchLink").href = url;
+                document.getElementById("searchLink").innerText = url;
+                document.getElementById("searchLinkDiv").style.display = "block";
+            };
         }
 
         if (option == "inBetween") {
             document.getElementById("inputOneLabel").innerText = "Input the low number";
             document.getElementById("inputOneDiv").style.display = "block";
             document.getElementById("inputTwoDiv").style.display = "block";
+            document.getElementById("searchLinkDiv").style.display = "none";
+
+            function updateBetweenLink() {
+                var low = document.getElementById("inputOneTextField").value;
+                var high = document.getElementById("inputTwoTextField").value;
+                var url = "http://localhost:8080/cities/search/findByPopulationBetween?low=" + low + "&high=" + high;
+                document.getElementById("searchLink").href = url;
+                document.getElementById("searchLink").innerText = url;
+                document.getElementById("searchLinkDiv").style.display = "block";
+            }
+            document.getElementById("inputOneTextField").oninput = updateBetweenLink;
+            document.getElementById("inputTwoTextField").oninput = updateBetweenLink;
         }
     }
 </script>
