@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Assignment City Searcher</title>
@@ -19,6 +19,10 @@
 <div id="inputOneDiv" style="display:none;">
     <label id="inputOneLabel">Label</label><br>
     <input type="text" id="inputOneTextField" />
+</div>
+
+<div id="cityNameLinkDiv" style="display:none;">
+    <a id="cityNameLink" href="" target="_blank">Click to search</a>
 </div>
 
 <!-- population sub-buttons, only show when Population is clicked -->
@@ -53,18 +57,30 @@
         document.getElementById("populationDiv").style.display = "none";
         document.getElementById("inputTwoDiv").style.display = "none";
 
+ // creates a url based on what the user inputs
         if (option == "cityName") {
             document.getElementById("inputOneLabel").innerText = "Type the city name";
             document.getElementById("inputOneDiv").style.display = "block";
+            document.getElementById("cityNameLinkDiv").style.display = "none";
+            document.getElementById("inputOneTextField").oninput = function() {
+                var name = document.getElementById("inputOneTextField").value;
+                var url = "http://localhost:8080/cities/search/findByName?name=" + name;
+                document.getElementById("cityNameLink").href = url;
+                document.getElementById("cityNameLink").innerText = url;
+                document.getElementById("cityNameLinkDiv").style.display = "block";
+            };
+
         }
 
         if (option == "country") {
             document.getElementById("inputOneLabel").innerText = "Type the country";
             document.getElementById("inputOneDiv").style.display = "block";
+            document.getElementById("cityNameLinkDiv").style.display = "none";
         }
 
         if (option == "population") {
             document.getElementById("populationDiv").style.display = "block";
+            document.getElementById("cityNameLinkDiv").style.display = "none";
         }
     }
 
